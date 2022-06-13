@@ -31,12 +31,16 @@ def rref(A, tol=1.0e-12):
     # Finished
     return A, jb
 
-
 with open('ldpc_reg5.txt', 'r') as f:
     A = [[int(num) for num in line.split(',')] for line in f]
 
 A = np.array(A)
 
+A = np.array([[1, 1, 0, 1, 1, 0, 0, 1, 0, 0], 
+              [0, 1, 1, 0, 1, 1, 1, 0, 0, 0],
+              [0, 0, 0, 1, 0, 0, 0, 1, 1, 1], 
+              [1, 1, 0, 0, 0, 1, 1, 0, 1, 0],
+              [0, 0, 1, 0, 0, 1, 0, 1, 0, 1]])
 #print(A)
 Areduced, jb = rref(A)
 print(f"The matrix as rank {len(jb)}")
