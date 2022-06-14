@@ -43,7 +43,6 @@ for i in lines:
 
 H = np.array(lines)
 idx = list(range(int(np.shape(H)[1] / 2), np.shape(H)[1])) + list(range(0, int(np.shape(H)[1] / 2)))
-print(idx)
 
 Areduced, jb = rref(H)
 
