@@ -72,4 +72,4 @@ text = open('message.txt', 'r').readlines()
 message = list(text[0])  # сообщение вида ['0', '1', '0', '0', '1', ...]
 message = [int(item) for item in message]
 
-c = np.array(message) @ G % 2
+x = np.array(message) @ G % 2
