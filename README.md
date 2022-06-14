@@ -1,2 +1,4 @@
-# Giga Readme
+# Readme
 ## Best practics ever created 
+
+## We have a matrix H (secret key), based on which we make a generating matrix G. Next, we have the plaintext u, the user calculates the encrypted text t c using the public key G, as c = x +e, where x = uG, and e is the error vector. Next, it is necessary to select t (noise) by modeling. Next, it is necessary to select t (noise) by modeling. For each t, we perform a certain number of decodings and determine the probability of error (the proportion of erroneous decodings). In this case, the error means that it was not possible to restore the text after making t errors. Next, we take 𝑡=0.01 as a normal error (out of 100 messages, we could not decode one). We performed decoding 300 times (this option turned out to be optimal in time and quality characteristics), the number of errors {3, 5, 7, 10}. As a result, we get the graph "error probability from e (the number of errors made)" for the matrix H

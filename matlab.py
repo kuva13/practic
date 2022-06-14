@@ -36,11 +36,6 @@ with open('ldpc_reg5.txt', 'r') as f:
 
 A = np.array(A)
 
-A = np.array([[1, 1, 0, 1, 1, 0, 0, 1, 0, 0], 
-              [0, 1, 1, 0, 1, 1, 1, 0, 0, 0],
-              [0, 0, 0, 1, 0, 0, 0, 1, 1, 1], 
-              [1, 1, 0, 0, 0, 1, 1, 0, 1, 0],
-              [0, 0, 1, 0, 0, 1, 0, 1, 0, 1]])
 #print(A)
 Areduced, jb = rref(A)
 print(f"The matrix as rank {len(jb)}")
