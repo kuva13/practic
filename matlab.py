@@ -32,17 +32,21 @@ def rref(A, tol=1.0e-12):
     return A, jb
 
 
-with open('ldpc_reg5.txt', 'r') as f:
-    A = [[int(num) for num in line.split(',')] for line in f]
+text = open('ldpc_reg6.txt', 'r').readlines()
+lines = []
+for line in text:
+    lines.append(line.split())
 
-A = np.array(A)
+for i in lines:
+    for ind, j in enumerate(i):
+        i[ind] = int(j)
 
-#print(A)
-Areduced, jb = rref(A)
-print(f"The matrix as rank {len(jb)}")
-with open('arreduced.txt', 'wb') as f:
-    np.savetxt(f, Areduced, fmt='%d')
-    print("Arreduced matrix in arreduced.txt file")
+H = np.array(lines)
+idx = list(range(int(np.shape(H)[1] / 2), np.shape(H)[1])) + list(range(0, int(np.shape(H)[1] / 2)))
+print(idx)
+
+Areduced, jb = rref(H)
+
 
 Areduced_mod = []
 for row in range(len(Areduced)):
@@ -54,3 +58,18 @@ for row in range(len(Areduced)):
 with open('arreduced_mod.txt', 'wb') as f:
     np.savetxt(f, Areduced_mod, fmt='%d')
     print("Arreduced matrix in arreduced_mod.txt file")
+
+Areduced_mod = np.array(Areduced_mod)
+Hstd = Areduced_mod[:, idx]
+
+M = np.shape(H)[0]  # N-K
+N = np.shape(H)[1]
+K = N - M
+
+G = np.concatenate([np.eye(K), ((-1)*Hstd[:, :K].T % 2)], axis=1)
+
+text = open('message.txt', 'r').readlines()
+message = list(text[0])  # сообщение вида ['0', '1', '0', '0', '1', ...]
+message = [int(item) for item in message]
+
+c = np.array(message) @ G % 2
